@@ -2,24 +2,15 @@
   "keyVaultName": {
     "value": "kv-api-dev"
   },
-"secrets": {
-  "value": [
-    {
-      "name": "ConnectionStrings--APIConnection",
-      "value": "DEV_DB"
-    },
-    {
-      "name": "API--JwtKey",
-      "value": "DEV_JWT_KEY"
-    },
-    {
-      "name": "API--FBKey",
-      "value": "DEV_RSA_KEY"
-    },
-    {
-      "name": "SMTPSettings--API--Password",
-      "value": "DEV_SMTP_PASSWORD"
-    }
-  ]
-}
+  "createNew": {
+    "value": false
+  },
+  "secrets": {
+    "value": [
+      {
+        "name": "ConnectionStrings--APIConnection",
+        "value": "DEV_DB"
+      }
+    ]
+  }
 }
