@@ -1,30 +1,30 @@
 @description('Key Vault Name')
 param keyVaultName string
 
-@description('Location')
+@description('Location of resources')
 param location string = resourceGroup().location
 
-@description('Dictionary of secrets')
-param secrets object
+@description('Array of secrets: [{ name: "...", value: "..." }]')
+param secrets array
 
 resource kv 'Microsoft.KeyVault/vaults@2023-02-01' = {
   name: keyVaultName
   location: location
   properties: {
     tenantId: subscription().tenantId
+    enableRbacAuthorization: true
     sku: {
       name: 'standard'
       family: 'A'
     }
-    enableRbacAuthorization: true
   }
 }
 
 resource kvSecrets 'Microsoft.KeyVault/vaults/secrets@2023-02-01' = [
-  for secretName in keys(secrets): {
-    name: '${kv.name}/${secretName}'
+  for secret in secrets: {
+    name: '${kv.name}/${secret.name}'
     properties: {
-      value: secrets[secretName]
+      value: secret.value
     }
   }
 ]
