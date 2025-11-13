@@ -1,6 +1,5 @@
 name: Deploy KeyVault - DEV
 
-# Run manually from GitHub Actions tab
 on:
   workflow_dispatch:
 
@@ -13,31 +12,26 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    # Step 1: Pull your repository files (bicep, parameters)
     - name: Checkout repository
       uses: actions/checkout@v3
 
-    # Step 2: Login to Azure using GitHub Secret "AZURE_CREDENTIALS"
+    # Install a stable Azure CLI version (avoids msal bug)
+    - name: Install Azure CLI
+      run: |
+        curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+        az version
+
     - name: Azure Login
       uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-    # Step 3: Deploy Bicep + Parameters file to Azure
-    - name: Deploy DEV Key Vault with Bicep
-      uses: azure/CLI@v1
-      with:
-        azcliversion: 2.52.0
-        inlineScript: |
-          echo "Starting Key Vault Deployment..."
+    - name: Deploy Key Vault Bicep
+      run: |
+        az deployment group create \
+          --resource-group api-dev-kv-rg \
+          --template-file infra/keyvault.bicep \
+          --parameters @infra/parameters/dev.parameters.json
 
-          az deployment group create \
-            --resource-group api-dev-kv-rg \
-            --template-file infra/keyvault.bicep \
-            --parameters @infra/parameters/dev.parameters.json
-
-          echo "Deployment completed successfully."
-
-    # Step 4: Logout (clean exit)
     - name: Logout Azure
       run: az logout
