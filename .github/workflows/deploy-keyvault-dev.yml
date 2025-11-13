@@ -32,7 +32,7 @@ jobs:
           echo "Starting Key Vault Deployment..."
 
           az deployment group create \
-            --resource-group api-dev-rg \
+            --resource-group api-dev-kv-rg \
             --template-file infra/keyvault.bicep \
             --parameters @infra/parameters/dev.parameters.json
 
