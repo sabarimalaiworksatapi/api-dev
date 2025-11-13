@@ -1,0 +1,11 @@
+{
+  "keyVaultName": {
+    "value": "kv-api-dev"
+  },
+  "secrets": {
+    "value": {
+      "ConnectionStrings--APIConnection": "DEV_DB_CONNECTION",
+      "ConnectionStrings--Redis": "DEV_REDIS" 
+    }
+  }
+}
