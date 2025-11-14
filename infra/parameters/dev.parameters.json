@@ -3,7 +3,7 @@
     "value": "kv-api-dev"
   },
   "createNew": {
-    "value": false
+    "value": true
   },
   "secrets": {
     "value": [
