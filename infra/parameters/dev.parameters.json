@@ -9,7 +9,47 @@
     "value": [
       {
         "name": "ConnectionStrings--APIConnection",
-        "value": "DEV_DB"
+        "value": "Data Source=10.0.0.9;Initial Catalog=API_V2_01062023;Persist Security Info=True;User ID=sgtsqladmin;Password=SgTgp@009SQL;TrustServerCertificate=True;"
+      },
+      {
+        "name": "BlobStorageAccount--OdooTcfStorageConnectionString",
+        "value": "DefaultEndpointsProtocol=https;AccountName=wormslink2tcf;AccountKey=AHOptMW7gfOsX+87AO2UTENQnSDoINnwvf3P0UkUUbp5Ervpv1+qbXybKFS/p+quXnEbDnEkP3z5ruLAQogGZA==;EndpointSuffix=core.windows.net"
+      },
+      {
+        "name": "BlobStorageAccount--ApiLinkStorageConnectionString",
+        "value": "DefaultEndpointsProtocol=https;AccountName=apilinkstorage;AccountKey=VG3sHeFK3TtLKW+ig9Wi9WZIamuKggUq41dYaE+MlEac5zcPheFKB53y8hXbaDF886AFdq4r0mhUo+wb88OdTg==;EndpointSuffix=core.windows.net"
+      },
+      {
+        "name": "ConnectionStrings--Redis",
+        "value": "#{RedisConnectionString}#"
+      },
+      {
+        "name": "SMTPSettings--API--Password",
+        "value": "nwCcRqQzjOaPxUt5"
+      },
+      {
+        "name": "SMTPSettings--SGT--Password",
+        "value": "nwCcRqQzjOaPxUt5"
+      },
+      {
+        "name": "SMTPSettings--AQF--Password",
+        "value": "nwCcRqQzjOaPxUt5"
+      },
+      {
+        "name": "FBKey",
+        "value": "-----BEGIN RSA PRIVATE KEY-----\n......PRIVATE KEY CONTENT......\n-----END RSA PRIVATE KEY-----"
+      },
+      {
+        "name": "JwtKey",
+        "value": "this is 1nv0ic3_t0k3n"
+      },
+      {
+        "name": "VapidDetails--PrivateKey",
+        "value": "XvNuQzrgU1GO3AT9Cxmy_icuvm_R_93Xpg4pmCeh3ac"
+      },   
+      {
+        "name": "TCFSettings--MasterToken",
+        "value": "access_token_9880e01c202ecd09931bd7cee3d094300cc167a0"
       }
     ]
   }
