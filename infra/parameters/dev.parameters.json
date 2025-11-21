@@ -12,6 +12,11 @@
         "value": "Data Source=10.0.0.9;Initial Catalog=API_V2_01062023;Persist Security Info=True;User ID=sgtsqladmin;Password=SgTgp@009SQL;TrustServerCertificate=True;"
       },
       {
+        "name": "ConnectionStrings--Redis",
+        "value": "#{RedisConnectionString}#"
+      },
+
+      {
         "name": "BlobStorageAccount--OdooTcfStorageConnectionString",
         "value": "DefaultEndpointsProtocol=https;AccountName=wormslink2tcf;AccountKey=AHOptMW7gfOsX+87AO2UTENQnSDoINnwvf3P0UkUUbp5Ervpv1+qbXybKFS/p+quXnEbDnEkP3z5ruLAQogGZA==;EndpointSuffix=core.windows.net"
       },
@@ -19,10 +24,7 @@
         "name": "BlobStorageAccount--ApiLinkStorageConnectionString",
         "value": "DefaultEndpointsProtocol=https;AccountName=apilinkstorage;AccountKey=VG3sHeFK3TtLKW+ig9Wi9WZIamuKggUq41dYaE+MlEac5zcPheFKB53y8hXbaDF886AFdq4r0mhUo+wb88OdTg==;EndpointSuffix=core.windows.net"
       },
-      {
-        "name": "ConnectionStrings--Redis",
-        "value": "#{RedisConnectionString}#"
-      },
+
       {
         "name": "SMTPSettings--API--Password",
         "value": "nwCcRqQzjOaPxUt5"
@@ -35,6 +37,7 @@
         "name": "SMTPSettings--AQF--Password",
         "value": "nwCcRqQzjOaPxUt5"
       },
+
       {
         "name": "FBKey",
         "value": "-----BEGIN RSA PRIVATE KEY-----\n......PRIVATE KEY CONTENT......\n-----END RSA PRIVATE KEY-----"
@@ -46,11 +49,66 @@
       {
         "name": "VapidDetails--PrivateKey",
         "value": "XvNuQzrgU1GO3AT9Cxmy_icuvm_R_93Xpg4pmCeh3ac"
-      },   
+      },
       {
         "name": "TCFSettings--MasterToken",
         "value": "access_token_9880e01c202ecd09931bd7cee3d094300cc167a0"
-      }
+      },
+
+      /* -------------------------
+         IDENTITY SERVER (FLAT KEYS)
+         ------------------------- */
+
+      { "name": "apiScope", "value": "api" },
+      { "name": "roleScope", "value": "roles" },
+
+      { "name": "apiClientId", "value": "API" },
+      { "name": "apiSecretKey", "value": "YXBpMjBmYTUwMTQtMWVjMC00MjhlLTk2ZjktZTVkNTljMWI3NGNh" },
+
+      { "name": "fbClientId", "value": "FullBridge" },
+      { "name": "fbSecretKey", "value": "ZmI5MGY4NDJmNS01YjJiLTQ0MDAtOGNmZS1hMmQ4MDRjZmQ2MmY=" },
+
+      { "name": "zohoClientId", "value": "Zoho" },
+      { "name": "zohoSecretKey", "value": "em9ob2ZmMmRjNDMyLWYzMWUtNGZkZC05NTk1LTY5MWIzYmQzZmQyYw==" },
+
+      { "name": "invoicePdfClientId", "value": "InvoicePdf" },
+      { "name": "invoicePdfSecretKey", "value": "aW52b2ljZXBkZjI3MzI0MjQ5LTE1MzItNDJhYS1iNmNkLTI0OTNlOGZlZDcyNQ==" },
+
+      { "name": "mobileAppClientId", "value": "MobileApp" },
+      { "name": "mobileAppSecretKey", "value": "aW52b2ljZXBkZjI3MzI0MjQ5LTE1MzItNDJhYS1iNmNkLTI0OTNlOGZlZDcyNQ==" },
+
+      { "name": "eaqfClientId", "value": "EAQF" },
+      { "name": "eaqfSecretKey", "value": "aW52b2ljZXBkZjI3MzI0MjQ5LTE1MzItNDJhYS1iNmNkLTI0OTNlOGZlZDcyNQ==" },
+
+      { "name": "fbsaasClientId", "value": "FBSAAS" },
+      { "name": "fbsaasSecretKey", "value": "aW52b2ljZXBkZjI3MzI0MjQ5LTE1MzItNDJhYS1iNmNkLTI0OTNlOGZlZDcyNQ==" },
+
+      { "name": "cflClientId", "value": "CFL" },
+      { "name": "cflSecretKey", "value": "MIIDATCCAe2gAwIBAgIQoHUYAquk9rBJcq8W+F0FAzAJBgUrDgMCHQUAMBIxEDAOBgNV" },
+      { "name": "cflCustomerId", "value": "59" },
+      { "name": "cflUserId", "value": "1209" },
+
+      { "name": "GoreClientId", "value": "Gore" },
+      { "name": "GoreSecretKey", "value": "HdqNMoB0VtkR6WqLXYXtgWZerbonetey/LghOUb9Jjk=" },
+      { "name": "GoreCustomerId", "value": "378" },
+
+      { "name": "SitkaClientId", "value": "Sitka" },
+      { "name": "SitkaSecretKey", "value": "HCT7Kul5nPopV2KIei+Zt1sWAXydIMYJDLHM/xfQtp8=" },
+      { "name": "SitkaCustomerId", "value": "379" },
+
+      { "name": "BeaumonairClientId", "value": "Beaumonair" },
+      { "name": "BeaumonairSecretKey", "value": "c2luY2VzbG93ZGlhbWV0ZXJtb25leXVuZGVyc3RhbmRpbmdzdHJhbmdlcmZvcmdvdHQ=" },
+      { "name": "BeaumonairCustomerId", "value": "903" },
+
+      { "name": "apiTokenLifeTime", "value": "86400" },
+
+      /* -------------------------
+         FILE SERVER (FLAT KEYS)
+         ------------------------- */
+
+      { "name": "BlobServiceEndpoint", "value": "https://apilinkstorage.blob.core.windows.net/" },
+      { "name": "BlobStorageAccount", "value": "apilinkstorage" },
+      { "name": "BlobStorageAccountKey", "value": "VG3sHeFK3TtLKW+ig9Wi9WZIamuKggUq41dYaE+MlEac5zcPheFKB53y8hXbaDF886AFdq4r0mhUo+wb88OdTg==" }
     ]
   }
 }
