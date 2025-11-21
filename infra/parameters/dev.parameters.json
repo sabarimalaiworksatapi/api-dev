@@ -1,9 +1,9 @@
 {
   "keyVaultName": {
-    "value": "kv-api-dev-bysabari"
+    "value": "kv-api-development"
   },
   "createNew": {
-    "value": false
+    "value": true
   },
   "secrets": {
     "value": [
