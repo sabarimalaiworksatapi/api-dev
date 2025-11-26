@@ -9,7 +9,7 @@
     "value": [
       {
         "name": "ConnectionStrings--APIConnection",
-        "value": "Data Source=10.0.0.9;Initial Catalog=API_V2_01062023;Persist Security Info=True;User ID=sgtsqladmin;Password=SgTgp@009SQL;TrustServerCertificate=True;"
+        "value": "Data Source=10.0.0.10;Initial Catalog=API_V2_01062023;Persist Security Info=True;User ID=sgtsqladmin;Password=SgTgp@009SQL;TrustServerCertificate=True;"
       },
       {
         "name": "ConnectionStrings--Redis",
