@@ -15,15 +15,14 @@ jobs:
     - name: Checkout repository (main repo only)
       uses: actions/checkout@v4
 
-    - name: Configure Git to use Bitbucket credentials for submodules
+    - name: Configure Git to use Bitbucket API token for submodules
       env:
         BITBUCKET_USERNAME: ${{ secrets.BITBUCKET_USERNAME }}
-        BITBUCKET_APP_PASSWORD: ${{ secrets.BITBUCKET_APP_PASSWORD }}
+        BITBUCKET_API_TOKEN: ${{ secrets.BITBUCKET_API_TOKEN }}
       run: |
-        git config --global url."https://${BITBUCKET_USERNAME}:${BITBUCKET_APP_PASSWORD}@bitbucket.org/".insteadOf "https://bitbucket.org/"
+        git config --global url."https://${BITBUCKET_USERNAME}:${BITBUCKET_API_TOKEN}@bitbucket.org/".insteadOf "https://bitbucket.org/"
         git submodule update --init --recursive
 
-    # Install a stable Azure CLI version (avoids msal bug)
     - name: Install Azure CLI
       run: |
         curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
@@ -34,7 +33,7 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-    - name: Deploy Key Vault Bicep
+    - name: Deploy KeyVault Bicep
       run: |
         az deployment group create \
           --resource-group api-dev-kv-rg \
