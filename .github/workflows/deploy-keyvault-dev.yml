@@ -12,27 +12,45 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository (main repo only)
+    # 1. Checkout main repo (no submodules yet)
+    - name: Checkout repository
       uses: actions/checkout@v4
+      with:
+        submodules: false
 
-    - name: Configure Git to use Bitbucket API token for submodules
+    # 2. Fix Bitbucket submodule authentication
+    - name: Configure Git for Bitbucket submodules
       env:
         BITBUCKET_USERNAME: ${{ secrets.BITBUCKET_USERNAME }}
         BITBUCKET_API_TOKEN: ${{ secrets.BITBUCKET_API_TOKEN }}
       run: |
         git config --global url."https://${BITBUCKET_USERNAME}:${BITBUCKET_API_TOKEN}@bitbucket.org/".insteadOf "https://bitbucket.org/"
+        git submodule sync --recursive
         git submodule update --init --recursive
 
+    # 3. Debug folder structure (to confirm infra exists)
+    - name: Debug folders
+      run: |
+        echo "Current Directory:"
+        pwd
+        echo "Root Files:"
+        ls -R .
+        echo "Infra Folder:"
+        ls -R infra || echo "infra folder NOT FOUND!"
+
+    # 4. Install Azure CLI
     - name: Install Azure CLI
       run: |
         curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
         az version
 
+    # 5. Azure Login using Federated Identity
     - name: Azure Login
       uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
+    # 6. Deploy KeyVault using Bicep
     - name: Deploy KeyVault Bicep
       run: |
         az deployment group create \
@@ -40,5 +58,6 @@ jobs:
           --template-file infra/keyvault.bicep \
           --parameters @infra/parameters/dev.parameters.json
 
+    # 7. Logout
     - name: Logout Azure
       run: az logout
