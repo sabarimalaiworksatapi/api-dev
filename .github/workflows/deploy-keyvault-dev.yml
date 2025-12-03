@@ -12,8 +12,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
+    - name: Checkout repository (main repo only)
+      uses: actions/checkout@v4
+
+    - name: Configure Git to use Bitbucket credentials for submodules
+      env:
+        BITBUCKET_USERNAME: ${{ secrets.BITBUCKET_USERNAME }}
+        BITBUCKET_APP_PASSWORD: ${{ secrets.BITBUCKET_APP_PASSWORD }}
+      run: |
+        git config --global url."https://${BITBUCKET_USERNAME}:${BITBUCKET_APP_PASSWORD}@bitbucket.org/".insteadOf "https://bitbucket.org/"
+        git submodule update --init --recursive
 
     # Install a stable Azure CLI version (avoids msal bug)
     - name: Install Azure CLI
