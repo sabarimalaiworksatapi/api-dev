@@ -45,6 +45,18 @@ jobs:
       uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
+        
+    - name: DEBUG — Check folder structure
+      run: |
+        echo "PWD:"
+        pwd
+        echo "ROOT:"
+        ls -R .
+        echo "INFRA:"
+        ls -R infra || echo "❌ infra folder NOT FOUND"
+        echo "BICEP:"
+        ls -la infra/keyvault.bicep || echo "❌ keyvault.bicep NOT FOUND"
+
 
     # STEP 6 — Deploy
     - name: Deploy KeyVault Bicep
