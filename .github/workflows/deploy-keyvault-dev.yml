@@ -63,8 +63,8 @@ jobs:
       run: |
         az deployment group create \
           --resource-group api-dev-kv-rg \
-          --template-file infra/infra/keyvault.bicep \
-          --parameters @infra/infra/parameters/qa.parameters.json
+          --template-file infra/keyvault.bicep \
+          --parameters @infra/parameters/qa.parameters.json
 
 
 
