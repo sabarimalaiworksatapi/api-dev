@@ -59,12 +59,13 @@ jobs:
 
 
     # STEP 6 — Deploy
-    - name: Deploy KeyVault Bicep
+    - name: Azure CLI Deploy
       run: |
         az deployment group create \
           --resource-group api-dev-kv-rg \
           --template-file infra/infra/keyvault.bicep \
           --parameters @infra/infra/parameters/qa.parameters.json
+
 
 
     # STEP 7 — Logout
