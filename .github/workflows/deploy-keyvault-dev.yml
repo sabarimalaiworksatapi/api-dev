@@ -64,7 +64,7 @@ jobs:
         az deployment group create \
           --resource-group api-dev-kv-rg \
           --template-file infra/infra/keyvault.bicep \
-          --parameters @infra/infra/parameters/dev.parameters.json
+          --parameters @infra/infra/parameters/qa.parameters.json
 
 
     # STEP 7 — Logout
