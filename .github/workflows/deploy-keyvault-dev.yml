@@ -12,63 +12,43 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    # STEP 1 — Setup Git Credentials BEFORE checkout
+    # STEP 1 — Prepare Git credentials for Bitbucket (submodule)
     - name: Prepare Git credentials for Bitbucket
       run: |
         git config --global url."https://${{ secrets.BITBUCKET_USERNAME }}:${{ secrets.BITBUCKET_API_TOKEN }}@bitbucket.org/".insteadOf "https://bitbucket.org/"
 
-    # STEP 2 — Checkout repo + submodules
+    # STEP 2 — Checkout repository WITH submodules
     - name: Checkout repository with submodules
       uses: actions/checkout@v4
       with:
         submodules: recursive
         fetch-depth: 0
 
-    # STEP 3 — Debug folders
-    - name: Debug folder structure
+    # STEP 3 — Debug folder structure (minimal & correct)
+    - name: Debug infra structure
       run: |
-        echo "ROOT:"
+        echo "Repo root:"
         ls -la
-        echo "INFRA:"
-        ls -la infra || echo "INFRA MISSING"
-        echo "BICEP:"
-        ls -la infra/keyvault.bicep || echo "FILE MISSING"
+        echo "infra/infra:"
+        ls -la infra/infra
+        echo "parameters:"
+        ls -la infra/infra/parameters
 
-    # STEP 4 — Install Azure CLI
-    - name: Install Azure CLI
-      run: |
-        curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
-        az version
-
-    # STEP 5 — Login
+    # STEP 4 — Azure Login
     - name: Azure Login
       uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
-        
-    - name: DEBUG — Check folder structure
-      run: |
-        echo "PWD:"
-        pwd
-        echo "ROOT:"
-        ls -R .
-        echo "INFRA:"
-        ls -R infra || echo "❌ infra folder NOT FOUND"
-        echo "BICEP:"
-        ls -la infra/keyvault.bicep || echo "❌ keyvault.bicep NOT FOUND"
 
-
-    # STEP 6 — Deploy
-    - name: Deploy Key Vault
+    # STEP 5 — Deploy Key Vault (QA)
+    - name: Deploy Key Vault - QA
       working-directory: infra/infra
       run: |
         az deployment group create \
           --resource-group SGT \
           --template-file keyvault.bicep \
-          --parameters @parameters/qa.parameters.json
+          --parameters @parameters/qa.parameter.json
 
-
-
-    # STEP 7 — Logout
-    - name: Logout Azure
+    # STEP 6 — Logout
+    - name: Azure Logout
       run: az logout
