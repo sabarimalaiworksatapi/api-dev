@@ -59,12 +59,13 @@ jobs:
 
 
     # STEP 6 — Deploy
-    - name: Azure CLI Deploy
+    - name: Deploy Key Vault
+      working-directory: infra/infra
       run: |
         az deployment group create \
-          --resource-group api-dev-kv-rg \
-          --template-file infra/infra/keyvault.bicep \
-          --parameters @infra/infra/parameters/qa.parameters.json
+          --resource-group SGT \
+          --template-file keyvault.bicep \
+          --parameters @parameters/qa.parameters.json
 
 
 
