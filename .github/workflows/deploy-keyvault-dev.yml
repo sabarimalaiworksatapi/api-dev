@@ -1,4 +1,4 @@
-name: Deploy KeyVault - QA
+name: Deploy KeyVault - DEV
 
 on:
   workflow_dispatch:
